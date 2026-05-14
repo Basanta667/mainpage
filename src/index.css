@@ -1,0 +1,92 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --color-atyro-blurple: #5865F2;
+  --color-brand-purple: #8B5CF6;
+  --color-brand-pink: #EC4899;
+  --color-brand-green: #22C55E;
+  --color-fake-bg: var(--fake-bg);
+  --color-fake-card: var(--fake-card);
+  --color-fake-text: var(--fake-text);
+  --color-fake-border: var(--fake-border);
+}
+
+:root {
+  --fake-bg: #050505;
+  --fake-card: #0A0A0A;
+  --fake-border: rgba(255, 255, 255, 0.08);
+  --fake-text: #ffffff;
+  --fake-muted: #a1a1aa;
+}
+
+html.light {
+  --fake-bg: #F8FAFC;
+  --fake-card: #ffffff;
+  --fake-border: rgba(0, 0, 0, 0.08);
+  --fake-text: #0F172A;
+  --fake-muted: #64748B;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-fake-bg text-fake-text antialiased transition-all duration-300;
+  }
+
+  html.light body {
+    @apply text-slate-900;
+  }
+  
+  html.light ::-webkit-scrollbar-track {
+    background: #f1f5f9;
+  }
+
+  html.light ::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--fake-bg);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #1F1F1F;
+    border-radius: 10px;
+    border: 2px solid var(--fake-bg);
+  }
+
+  html.light ::-webkit-scrollbar-thumb {
+    background: #94a3b8;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #8B5CF6;
+  }
+}
+
+@layer utilities {
+  .bg-brand-gradient {
+    background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);
+  }
+  .bg-glass {
+    @apply bg-white/[0.03] dark:bg-white/[0.03] backdrop-blur-xl border border-white/10 dark:border-white/10;
+  }
+  html.light .bg-glass {
+    @apply bg-white/60 border-black/5;
+  }
+  .text-gradient {
+    background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}

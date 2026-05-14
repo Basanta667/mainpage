@@ -1,0 +1,60 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 0. Global Safety Net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Phase 3: Primitive Definition
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    // Phase 4: Validation Blueprints
+    function isValidUser(data) {
+      return data.keys().hasAll(['uid', 'email', 'username', 'createdAt']) &&
+             data.uid is string && data.uid.size() <= 128 &&
+             data.email is string && data.email.size() <= 256 &&
+             data.username is string && data.username.size() <= 100 &&
+             (!data.keys().contains('lastLogin') || data.lastLogin is timestamp);
+    }
+
+    // Rules for users collection
+    match /users/{userId} {
+      allow get: if isSignedIn() && isValidId(userId);
+      allow list: if false; 
+      
+      allow create: if isOwner(userId) && 
+                      isValidId(userId) &&
+                      isValidUser(incoming()) && 
+                      incoming().createdAt == request.time &&
+                      incoming().uid == request.auth.uid;
+      
+      allow update: if isOwner(userId) && 
+                      isValidId(userId) &&
+                      isValidUser(incoming()) && 
+                      incoming().uid == existing().uid &&
+                      incoming().createdAt == existing().createdAt &&
+                      incoming().diff(existing()).affectedKeys().hasOnly(['username', 'lastLogin']);
+      
+      allow delete: if false;
+    }
+  }
+}
