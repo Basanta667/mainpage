@@ -20,7 +20,7 @@ const Footer = () => {
               <div className="w-10 h-10 rounded-xl flex items-center justify-center overflow-hidden">
                 <img src="https://raw.githubusercontent.com/Basanta667/HowtosetuppterodactylwingsForFree/refs/heads/main/FakeCloud2.png" alt="FakeCloud Logo" className="w-full h-full object-cover" />
               </div>
-              <span className="text-xl font-black tracking-tighter uppercase text-zinc-900 dark:text-white">FakeCloud</span>
+              <span className="text-xl font-black tracking-tighter uppercase text-zinc-900 dark:text-white whitespace-nowrap">Fake Cloud</span>
            </div>
            <p className="text-zinc-500 font-medium text-sm leading-relaxed mb-8 max-w-xs">
              Enterprise-grade hosting solutions with guaranteed performance and global infrastructure. Experience the future of hosting.
@@ -78,7 +78,7 @@ const Footer = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 pt-12 border-t border-fake-border flex flex-col md:flex-row justify-between items-center gap-6 text-zinc-600 text-[10px] font-black uppercase tracking-[0.2em]">
-         <p>© 2026 FakeCloud Hosting. Power by FakeCloud.</p>
+         <p>© 2026 Fake Cloud Hosting. Power by Fake Cloud.</p>
       </div>
     </footer>
   );

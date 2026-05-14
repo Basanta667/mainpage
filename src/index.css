@@ -35,7 +35,7 @@ html.light {
   }
   
   body {
-    @apply bg-fake-bg text-fake-text antialiased transition-all duration-300;
+    @apply bg-[#050505] text-fake-text antialiased transition-all duration-300;
   }
 
   html.light body {
