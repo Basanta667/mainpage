@@ -285,9 +285,7 @@ const Navbar = () => {
            <div className="w-10 h-10 rounded-xl flex items-center justify-center overflow-hidden">
               <img src="https://raw.githubusercontent.com/Basanta667/HowtosetuppterodactylwingsForFree/refs/heads/main/FakeCloud2.png" alt="FakeCloud Logo" className="w-full h-full object-cover" />
            </div>
-          <span className="text-xl font-black tracking-tighter uppercase text-zinc-900 dark:text-white whitespace-nowrap">
-            Fake Cloud
-          </span>
+          <span className="text-xl font-black tracking-tighter uppercase text-zinc-900 dark:text-white whitespace-nowrap">Fake Cloud</span>
         </div>
 
         <div className="hidden lg:flex items-center gap-2">
